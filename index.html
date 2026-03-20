@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>두레생협 결제 서비스 변경 안내</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1a6b50;
+  --green-dark: #145a42;
+  --green-mid: #2e9e74;
+  --green-light: #e1f5ee;
+  --green-bg: #f0f9f5;
+  --red: #b91c1c;
+  --red-bg: #FCEBEB;
+  --red-border: #f5c6c6;
+  --text: #1a1a1a;
+  --text-sub: #555;
+  --border: #e0e0e0;
+  --bg: #f4f6f4;
+  --white: #fff;
+}
+html { font-size: 16px; }
+body {
+  font-family: 'Noto Sans KR', '맑은 고딕', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+}
+
+/* 헤더 */
+.header {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+  padding: 32px 24px 28px;
+  color: var(--white);
+  text-align: center;
+}
+.header .tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.header .date {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* 콘텐츠 영역 */
+.content { padding: 20px 18px 0; }
+
+/* 인사말 */
+.intro {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #333;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+/* 카드 섹션 */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.card-head {
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+}
+.card-head.green { background: var(--green); }
+.card-head.mid { background: var(--green-mid); }
+.card-head .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+.card-body { padding: 18px 20px; }
+
+/* 변경일정 */
+.highlight-date {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.badge {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 8px;
+}
+.badge.before { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.badge.after { background: var(--green-light); color: var(--green); border: 1px solid #9FE1CB; }
+.arrow { font-size: 20px; color: #aaa; font-weight: 700; }
+
+/* 할 일 박스 */
+.todo-box {
+  background: #FFFBEE;
+  border: 2px solid #D4A017;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.todo-box .title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.todo-box p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #78350f;
+}
+.todo-box .em {
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* Q&A */
+.qa-section { margin-bottom: 16px; }
+.qa-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+}
+.qa-item .q {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+  display: flex;
+  gap: 6px;
+}
+.qa-item .q span { flex-shrink: 0; }
+.qa-item .a {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  padding-left: 22px;
+}
+
+/* 이벤트 */
+.event-card {
+  background: var(--white);
+  border: 2px solid var(--green);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.event-head {
+  background: var(--green);
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+}
+.event-body { padding: 18px 20px; }
+.event-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+.event-row:last-of-type { margin-bottom: 18px; }
+.ekey {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green-mid);
+  padding: 4px 10px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+  flex-shrink: 0;
+  line-height: 1.7;
+}
+.eval {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.eval .hl {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 17px;
+}
+.btn-link {
+  display: block;
+  background: var(--green);
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s;
+}
+.btn-link:active { background: var(--green-dark); }
+
+/* 안내 박스 */
+.info-box {
+  background: var(--green-bg);
+  border-left: 4px solid var(--green-mid);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #1a4a35;
+}
+
+/* 푸터 */
+.footer {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-sub);
+  padding: 20px 18px 0;
+  border-top: 1px solid #ddd;
+  margin: 0 18px;
+}
+.footer strong { color: var(--text); font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <span class="tag">필독 공지</span>
+    <h1>자동결제(빌링)<br>카드 재등록 안내</h1>
+    <p class="date">2026년 3월 20일</p>
+  </div>
+
+  <div class="content">
+
+    <!-- 인사말 -->
+    <div class="intro">
+      안녕하세요, 두레생협 온라인 쇼핑몰입니다.<br>
+      현재 자동결제(빌링)를 이용해 주시는 조합원님께 중요한 안내를 드립니다.
+    </div>
+
+    <!-- 1. 변경 일정 -->
+    <div class="card">
+      <div class="card-head green"><span class="num">1</span> 변경 일정</div>
+      <div class="card-body">
+        <p class="highlight-date">2026년 3월 26일(목)<br>오전 12시 이후 주문부터 적용</p>
+        <div class="badge-row">
+          <span class="badge before">KG이니시스</span>
+          <span class="arrow">&rarr;</span>
+          <span class="badge after">나이스페이먼츠</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 하셔야 할 일 -->
+    <div class="todo-box">
+      <div class="title">&#9888;&#65039; 조합원님께서 하셔야 할 일</div>
+      <p>
+        새 결제사(나이스페이먼츠)에 카드를 <strong>1회만 다시 등록</strong>해 주세요.<br>
+        등록 후에는 기존과 동일하게 자동결제가 진행됩니다.<br><br>
+        <span class="em">&#8251; 재등록하지 않으시면 3월 26일 이후 자동결제가 진행되지 않아 주문에 불편이 생길 수 있습니다.</span>
+      </p>
+    </div>
+
+    <!-- 3. 자주 묻는 질문 -->
+    <div class="card" style="border:none; background:transparent; margin-bottom:8px;">
+      <div class="card-head mid"><span class="num">2</span> 자주 묻는 질문</div>
+    </div>
+
+    <div class="qa-section">
+      <div class="qa-item">
+        <div class="q"><span>Q.</span> 기존 카드 정보는 어떻게 되나요?</div>
+        <div class="a">기존 이니시스에 등록된 카드 정보는 자동 해지되며, 개인정보는 안전하게 처리됩니다. 별도로 해지하실 필요가 없습니다.</div>
+      </div>
+      <div class="qa-item">
+        <div class="q"><span>Q.</span> 재등록하지 않으면 어떻게 되나요?</div>
+        <div class="a">3월 26일 이후 자동결제가 진행되지 않습니다. 이 경우 매번 수동으로 결제하셔야 하므로, 사전에 꼭 등록을 부탁드립니다.</div>
+      </div>
+      <div class="qa-item">
+        <div class="q"><span>Q.</span> 등록이 어렵지 않나요?</div>
+        <div class="a">카드 정보만 입력하면 1~2분이면 완료됩니다. 기존과 동일한 카드로 등록하시면 됩니다.</div>
+      </div>
+      <div class="qa-item">
+        <div class="q"><span>Q.</span> 다른 카드로 변경해도 되나요?</div>
+        <div class="a">네, 이번 재등록 시 다른 카드로 변경 등록하셔도 됩니다.</div>
+      </div>
+      <div class="qa-item">
+        <div class="q"><span>Q.</span> 일반 카드결제도 바뀌나요?</div>
+        <div class="a">일반 카드결제는 별도 조치 없이 기존과 동일하게 이용 가능합니다. 자동결제(빌링) 이용자분만 카드 재등록이 필요합니다.</div>
+      </div>
+    </div>
+
+    <!-- 이벤트 -->
+    <div class="event-card">
+      <div class="event-head">빌링 카드 사전등록 이벤트</div>
+      <div class="event-body">
+        <div class="event-row">
+          <span class="ekey">등록 기간</span>
+          <span class="eval">3월 20일(금) ~ 3월 25일(화) 자정</span>
+        </div>
+        <div class="event-row">
+          <span class="ekey">이벤트 혜택</span>
+          <span class="eval">사전등록 후 최초 주문 시<br><span class="hl">유정란 10구 증정</span> (1회 한정)</span>
+        </div>
+        <div class="event-row">
+          <span class="ekey">증정 배송일</span>
+          <span class="eval">3월 30일 ~ 4월 말 순차 배송</span>
+        </div>
+        <a class="btn-link" href="https://ecoop.or.kr/DureShop/my/my_bill_list_Prev.do">카드 사전등록 바로가기</a>
+      </div>
+    </div>
+
+    <!-- 안내 -->
+    <div class="info-box">
+      등록 완료 후에는 별도 확인 문자를 보내드립니다.<br>
+      이용 중 불편하신 점은 두레생협 고객센터로 문의해 주세요.
+    </div>
+
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    늘 함께해 주시는 조합원님께 감사드립니다.<br><br>
+    <strong>두레생협 온라인사업팀 드림</strong>
+  </div>
+
+</div>
+
+</body>
+</html>
